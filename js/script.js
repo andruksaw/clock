@@ -26,14 +26,22 @@ const minutesNumber = document.querySelector('.minutes')
 } */
 
 
-
-
 let iSecond = 0,
     iMinutes = 0,
     iHours = 0;
 
+
+
 function clock() {
     let time = new Date()
+    second = time.getSeconds(),
+        minutes = time.getMinutes(),
+        hours = time.getHours();
+
+    hoursNumber.innerHTML = hours
+    minutesNumber.innerHTML = minutes
+
+
     if (iMinutes == 0 && iSecond == 0) {
         iMinutes = time.getMinutes() * 6
     } else if (time.getSeconds() == 0) {
@@ -60,7 +68,11 @@ function clock() {
     min.style.transition = `1s`
     hour.style.transition = `1s`
 
+
+
     setTimeout(() => clock(), 1000)
+
+
 }
 clock()
 
@@ -120,11 +132,11 @@ stopWatchBtn.addEventListener('click', function () {
 
 function iteratorSec(s = 0, m = 0, h = 0) {
     s++
-    if(s === 59){
+    if (s === 59) {
         s = 0
         m++
     }
-    if(m == 59){
+    if (m == 59) {
         m = 0
         h++
     }
@@ -135,9 +147,9 @@ function iteratorSec(s = 0, m = 0, h = 0) {
         if (stopWatchBtn.innerHTML == 'clear') {
             clearTimeout(intervalTime)
         } else {
-            iteratorSec(s,m,h)
+            iteratorSec(s, m, h)
         }
-        
+
     }, 1000)
 }
 
